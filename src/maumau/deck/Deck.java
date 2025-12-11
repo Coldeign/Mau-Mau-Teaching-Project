@@ -1,4 +1,7 @@
 package maumau.deck;
 
-public class Deck {
+import maumau.playingCard.PlayingCard;
+
+public interface Deck {
+    PlayingCard pop();
 }

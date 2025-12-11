@@ -1,4 +1,8 @@
 package maumau.player;
 
-public class Player {
+import maumau.deck.Deck;
+
+public interface Player {
+    void draw(Deck fromDeck);
+    void playCard();
 }
