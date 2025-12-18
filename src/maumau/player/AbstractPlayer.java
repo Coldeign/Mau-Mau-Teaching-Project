@@ -1,13 +1,9 @@
 package maumau.player;
 
 import maumau.deck.Deck;
-import maumau.playingCard.PlayingCard;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class AbstractPlayer implements Player {
-    private List<PlayingCard> handCards = new ArrayList<>();
+    private PlayerHand hand = new PlayerHand();
 
     public AbstractPlayer(Deck toHandCardsDrawFrom) {
         for (int i = 0; i < 6; i++) {
@@ -17,6 +13,6 @@ public abstract class AbstractPlayer implements Player {
 
     @Override
     public void draw(Deck fromDeck) {
-        handCards.add(fromDeck.pop());
+        hand.add(fromDeck.pop());
     }
 }

@@ -1,11 +1,13 @@
 package maumau.gamelogic;
 
 import maumau.deck.Deck;
+import maumau.player.Player;
 import maumau.playingCard.PlayingCard;
 
 public class Game {
     private Deck deck;
     private PlayingCard topCard;
+    private Player[] players;
 
     public Game() {}
 
