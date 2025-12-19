@@ -1,6 +1,6 @@
 package maumau.deck;
 
-import maumau.SortingMethod;
+import maumau.playingCard.SortingMethod;
 import maumau.playingCard.PlayingCard;
 
 public interface Deck {

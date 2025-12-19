@@ -1,6 +1,6 @@
 package maumau.deck;
 
-import maumau.SortingMethod;
+import maumau.playingCard.SortingMethod;
 import maumau.playingCard.CardColor;
 import maumau.playingCard.CardValue;
 import maumau.playingCard.PlayingCard;
@@ -8,7 +8,13 @@ import maumau.playingCard.PlayingCard;
 import java.util.Random;
 
 public class ArrayDeck implements Deck {
-    PlayingCard[] deck = new PlayingCard[32];
+    public static final int DEFAULT_DECK_SIZE = 32;
+    private PlayingCard[] deck;
+
+    public ArrayDeck() {
+        init();
+        shuffle();
+    }
 
     @Override
     public PlayingCard pop() {
@@ -47,52 +53,12 @@ public class ArrayDeck implements Deck {
 
     @Override
     public void sort(SortingMethod method) {
-        switch (method) {
-            case BUBBLE -> bubbleSort();
-            case INSERTION -> insertionSort();
-            case SELECTION -> selectionSort();
-        }
-    }
-
-    private void bubbleSort() {
-        for (int i = 0; i < deck.length; i++) {
-            for (int j = 0; j < deck.length - i - 1; j++) {
-                if (deck[j].compareTo(deck[j+1]) > 0) {
-                    PlayingCard card = deck[j];
-                    deck[j] = deck[j+1];
-                    deck[j+1] = card;
-                }
-            }
-        }
-    }
-
-    private void insertionSort() {
-        for (int i = 1; i < deck.length; i++) {
-            PlayingCard card = deck[i];
-            int j = i - 1;
-            while (j >= 0 && deck[j].compareTo(card) > 0) {
-                deck[j + 1] = deck[j];
-                j = j - 1;
-            }
-            deck[j + 1] = card;
-        }
-    }
-
-    private void selectionSort() {
-        for (int i = 0; i < deck.length - 1; i++) {
-            int min_idx = i;
-            for (int j = i + 1; j < deck.length; j++) {
-                if (deck[j].compareTo(deck[min_idx]) < 0)
-                    min_idx = j;
-            }
-            PlayingCard temp = deck[min_idx];
-            deck[min_idx] = deck[i];
-            deck[i] = temp;
-        }
+        method.sort(deck);
     }
 
     @Override
     public void init() {
+        deck = new PlayingCard[DEFAULT_DECK_SIZE];
         int index = 0;
         for (int i = 0; i < CardColor.values().length; i++) {
             for (int j = 0; j < CardValue.values().length; j++) {
@@ -115,7 +81,9 @@ public class ArrayDeck implements Deck {
     public String toString() {
         StringBuilder sb = new StringBuilder("Deck:");
         for(PlayingCard card : deck) {
-            sb.append("\n").append(card.toString());
+            if (card != null) {
+                sb.append("\n").append(card);
+            }
         }
         return sb.toString();
     }
