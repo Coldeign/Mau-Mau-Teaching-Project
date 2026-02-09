@@ -3,7 +3,7 @@ package maumau;
 import maumau.gamelogic.Game;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main() {
         Game game = Game.getInstance();
         game.play();
     }

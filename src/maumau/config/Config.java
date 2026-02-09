@@ -33,11 +33,9 @@ public class Config {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Config {");
-        sb.append("deckType = ").append(deckType);
-        sb.append(", playerTypes = ").append(Arrays.toString(playerTypes));
-        sb.append('}');
-        return sb.toString();
+        return "Config {" + "deckType = " + deckType +
+                ", playerTypes = " + Arrays.toString(playerTypes) +
+                '}';
     }
 
     private void readConfig() {

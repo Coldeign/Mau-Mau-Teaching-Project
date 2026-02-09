@@ -4,7 +4,8 @@ import maumau.playingCard.PlayingCard;
 import maumau.sorting.ArraySort;
 
 public class LinkedStackDeck implements Deck {
-    private LinkedStack<PlayingCard> deck = new LinkedStack<>();
+    public final DeckType deckType = DeckType.LINKED_STACK;
+    private final LinkedStack<PlayingCard> deck = new LinkedStack<>();
 
     public LinkedStackDeck() {
         init();

@@ -1,5 +1,6 @@
 package maumau.gamelogic;
 
+@Deprecated
 public class UI {
     // TODO: implement user interface to play cards, etc
     //  on second thought... let's not, I want to keep my sanity

@@ -1,7 +1,5 @@
 package maumau.sorting;
 
-import maumau.playingCard.PlayingCard;
-
 import java.util.Random;
 
 public class ArraySort {

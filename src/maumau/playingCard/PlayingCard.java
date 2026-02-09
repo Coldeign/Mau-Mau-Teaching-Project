@@ -1,7 +1,5 @@
 package maumau.playingCard;
 
-import java.util.Comparator;
-
 public class PlayingCard implements Comparable<PlayingCard> {
     private static final PlayingCard[] ALL_CARDS = new PlayingCard[CardValue.values().length * CardColor.values().length];
     public final CardColor color;
