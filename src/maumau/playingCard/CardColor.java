@@ -21,7 +21,7 @@ public enum CardColor {
 
     public static CardColor getByUserInput() {
         while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardColor.colorsString() +  "): ").toUpperCase();
+            String input = IOTools.readString("Enter the card color or the index (" + CardColor.colorsString() +  "): ");
 
             try {
                 return CardColor.values()[Integer.parseInt(input)];

@@ -23,7 +23,7 @@ public enum CardValue {
 
     public static CardValue getByUserInput() {
         while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardValue.valuesString() +  "): ").toUpperCase();
+            String input = IOTools.readString("Enter the card color or the index (" + CardValue.valuesString() +  "): ");
 
             try {
                 return CardValue.values()[Integer.parseInt(input)];
