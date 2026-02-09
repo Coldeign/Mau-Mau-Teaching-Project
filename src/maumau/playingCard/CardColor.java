@@ -13,22 +13,30 @@ public enum CardColor {
     public static String colorsString() {
         StringBuilder sb = new StringBuilder();
         for (CardColor color : CardColor.values()) {
-            sb.append(color).append(", ");
+            sb.append(color).append(" (").append(color.ordinal()).append(")").append(", ");
         }
         sb.delete(sb.length()-2, sb.length());
         return sb.toString();
     }
 
     public static CardColor getByUserInput() {
-        CardColor color = null;
-        do {
+        while (true) {
+            String input = IOTools.readString("Enter the card color or the index (" + CardColor.colorsString() +  "): ").toUpperCase();
+
             try {
-                color = CardColor.valueOf(IOTools.readString("Enter the card color (" + CardColor.colorsString() +  "): ").toUpperCase());
+                return CardColor.values()[Integer.parseInt(input)];
+            } catch (NumberFormatException e) {
+                // input is not a number then, might be the color itself
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Enter a valid index!");
+            }
+
+            try {
+                return CardColor.valueOf(input.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Enter a valid card color!");
             }
-        } while (color == null);
-        return color;
+        }
     }
 
     public static CardColor randomCardColor(CardColor except) {
@@ -39,6 +47,7 @@ public enum CardColor {
     }
 
     public static CardColor randomCardColor() {
-        return CardColor.values()[new Random().nextInt(4)];
+        CardColor[] arr = CardColor.values();
+        return arr[new Random().nextInt(arr.length)];
     }
 }

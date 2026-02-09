@@ -3,33 +3,41 @@ package maumau.playingCard;
 import Prog1Tools.IOTools;
 
 public enum CardValue {
-    ACE,
-    KING,
-    QUEEN,
-    JACK,
-    TEN,
-    NINE,
+    SEVEN,
     EIGHT,
-    SEVEN;
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING,
+    ACE;
 
     public static String valuesString() {
         StringBuilder sb = new StringBuilder();
-        for (CardValue color : CardValue.values()) {
-            sb.append(color).append(", ");
+        for (CardValue value : CardValue.values()) {
+            sb.append(value).append(" (").append(value.ordinal()).append(")").append(", ");
         }
         sb.delete(sb.length()-2, sb.length());
         return sb.toString();
     }
 
     public static CardValue getByUserInput() {
-        CardValue value = null;
-        do {
+        while (true) {
+            String input = IOTools.readString("Enter the card color or the index (" + CardValue.valuesString() +  "): ").toUpperCase();
+
             try {
-                value = CardValue.valueOf(IOTools.readString("Enter the card value (" + CardValue.valuesString() +  "): ").toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Enter a valid card value!");
+                return CardValue.values()[Integer.parseInt(input)];
+            } catch (NumberFormatException e) {
+                // input is not a number then, might be the value itself
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Enter a valid index!");
             }
-        } while (value == null);
-        return value;
+
+            try {
+                return CardValue.valueOf(input.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Enter a valid card color!");
+            }
+        }
     }
 }
