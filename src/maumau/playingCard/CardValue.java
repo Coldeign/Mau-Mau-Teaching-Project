@@ -12,7 +12,7 @@ public enum CardValue {
     KING,
     ACE;
 
-    public static String valuesString() {
+    public static String formattedString() {
         StringBuilder sb = new StringBuilder();
         for (CardValue value : CardValue.values()) {
             sb.append(value).append(" (").append(value.ordinal()).append(")").append(", ");
@@ -23,17 +23,13 @@ public enum CardValue {
 
     public static CardValue getByUserInput() {
         while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardValue.valuesString() +  "): ");
+            String input = IOTools.readString("Enter the card color or the index (" + CardValue.formattedString() +  "): ");
 
             try {
                 return CardValue.values()[Integer.parseInt(input)];
-            } catch (NumberFormatException e) {
-                // input is not a number then, might be the value itself
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Enter a valid index!");
-            }
-
-            try {
+            } catch (NumberFormatException e) {
                 return CardValue.valueOf(input.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Enter a valid card color!");

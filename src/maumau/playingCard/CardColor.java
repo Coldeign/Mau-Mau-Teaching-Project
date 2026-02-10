@@ -10,7 +10,7 @@ public enum CardColor {
     HEARTS,
     DIAMONDS;
 
-    public static String colorsString() {
+    public static String formattedString() {
         StringBuilder sb = new StringBuilder();
         for (CardColor color : CardColor.values()) {
             sb.append(color).append(" (").append(color.ordinal()).append(")").append(", ");
@@ -21,17 +21,13 @@ public enum CardColor {
 
     public static CardColor getByUserInput() {
         while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardColor.colorsString() +  "): ");
+            String input = IOTools.readString("Enter the card color or the index (" + CardColor.formattedString() +  "): ");
 
             try {
                 return CardColor.values()[Integer.parseInt(input)];
-            } catch (NumberFormatException e) {
-                // input is not a number then, might be the color itself
-            } catch (ArrayIndexOutOfBoundsException e) {
+            }  catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Enter a valid index!");
-            }
-
-            try {
+            } catch (NumberFormatException e) {
                 return CardColor.valueOf(input.toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Enter a valid card color!");
