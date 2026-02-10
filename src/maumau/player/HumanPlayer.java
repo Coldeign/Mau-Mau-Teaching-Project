@@ -18,7 +18,7 @@ public class HumanPlayer extends AbstractPlayer {
             System.out.println("Pick a card to play: ");
             cardToPlay = PlayingCard.getByUserInput();
             idx = hand.containsCardAt(cardToPlay);
-        } while (!topCard.matches(cardToPlay) && idx != -1);
+        } while (idx == -1 || !topCard.matches(cardToPlay));
 
         return hand.remove(idx);
     }
