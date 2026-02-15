@@ -3,6 +3,7 @@ package maumau.config;
 import Prog1Tools.IOTools;
 import maumau.deck.DeckType;
 import maumau.player.PlayerType;
+import util.enumUtil.EnumUtils;
 
 import java.io.*;
 import java.util.Arrays;
@@ -97,7 +98,7 @@ public class Config {
 
     private void editConfig() {
         if (makeChangeToSetting("deck type")) {
-            deckType = DeckType.getDeckTypeFromUserInput();
+            deckType = EnumUtils.getFromUserInput(DeckType.class);
         }
         if (makeChangeToSetting("players")) {
             int playerAmount;
@@ -106,7 +107,7 @@ public class Config {
             } while (playerAmount < 2);
             playerTypes = new PlayerType[playerAmount];
             for (int i = 0; i < playerTypes.length; i++) {
-                playerTypes[i] = PlayerType.getPlayerTypeFromUserInput();
+                playerTypes[i] = EnumUtils.getFromUserInput(PlayerType.class);
             }
         }
     }

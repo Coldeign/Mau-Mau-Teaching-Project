@@ -85,5 +85,15 @@ public class PlayerHandTreeSet implements PlayerHand {
         }
         return -1;
     }
+
+    @Override
+    public int size() {
+        return hand.size();
+    }
+
+    @Override
+    public PlayingCard get(int index) {
+        return null;
+    }
 }
 

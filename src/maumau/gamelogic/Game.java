@@ -9,6 +9,7 @@ import maumau.player.Player;
 import maumau.playingCard.CardColor;
 import maumau.playingCard.CardValue;
 import maumau.playingCard.PlayingCard;
+import util.enumUtil.EnumUtils;
 
 /**
  * Using a Singleton Pattern to ensure there only ever exists one Game object.
@@ -51,13 +52,13 @@ public class Game {
             System.out.println("Current topcard: " + topCard);
 
 
-            if (topCard.value == CardValue.EIGHT && !eightAccountedFor) {
+            if (topCard.cardValue == CardValue.EIGHT && !eightAccountedFor) {
                 System.out.println(currentPlayer + ": \"Bummer...\"");
                 eightAccountedFor = true;
                 continue;
             }
 
-            if (topCard.value == CardValue.SEVEN && !sevenAccountedFor) {
+            if (topCard.cardValue == CardValue.SEVEN && !sevenAccountedFor) {
                 System.out.println(currentPlayer + ": \"That's mean!\"");
                 currentPlayer.draw(deck);
                 currentPlayer.draw(deck);
@@ -102,7 +103,7 @@ public class Game {
             }
              */
             if (topCardIsJack()) {
-                System.out.println("Card color changed to " + topCard.color);
+                System.out.println("Card color changed to " + topCard.cardColor);
             }
         } while (true);
 
@@ -121,13 +122,13 @@ public class Game {
     }
 
     private boolean topCardIsJack () {
-        if (topCard.value != CardValue.JACK) {
+        if (topCard.cardValue != CardValue.JACK) {
             return false;
         }
 
         if (currentPlayer instanceof HumanPlayer) {
             System.out.print("Pick a color! ");
-            topCard = new PlayingCard(CardColor.getByUserInput(), CardValue.JACK);
+            topCard = new PlayingCard(EnumUtils.getFromUserInput(CardColor.class), CardValue.JACK);
         } else if (currentPlayer instanceof ComPlayer) {
             topCard = new PlayingCard(CardColor.randomCardColor(), CardValue.JACK);
         }

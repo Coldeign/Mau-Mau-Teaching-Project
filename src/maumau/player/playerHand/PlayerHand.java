@@ -9,4 +9,6 @@ public interface PlayerHand {
     PlayingCard remove(int index);
     int containsCardAt(PlayingCard card);
     int matchesCardAt(PlayingCard card);
+    int size();
+    PlayingCard get(int index);
 }

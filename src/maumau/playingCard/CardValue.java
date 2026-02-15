@@ -1,39 +1,34 @@
 package maumau.playingCard;
 
-import Prog1Tools.IOTools;
+import util.enumUtil.hasDisplayName;
+import util.enumUtil.hasSymbol;
 
-public enum CardValue {
-    SEVEN,
-    EIGHT,
-    NINE,
-    TEN,
-    JACK,
-    QUEEN,
-    KING,
-    ACE;
+public enum CardValue implements hasDisplayName, hasSymbol {
+    SEVEN("Seven", "7"),
+    EIGHT("Eight", "8"),
+    NINE("Nine", "9"),
+    TEN("Ten", "10"),
+    JACK("Jack", "J"),
+    QUEEN("Queen", "Q"),
+    KING("King", "K"),
+    ACE("Ace", "A");
 
-    public static String formattedString() {
-        StringBuilder sb = new StringBuilder();
-        for (CardValue value : CardValue.values()) {
-            sb.append(value).append(" (").append(value.ordinal()).append(")").append(", ");
-        }
-        sb.delete(sb.length()-2, sb.length());
-        return sb.toString();
+
+    private final String displayName;
+    private final String symbol;
+
+    CardValue(String displayName, String symbol) {
+        this.displayName = displayName;
+        this.symbol = symbol;
     }
 
-    public static CardValue getByUserInput() {
-        while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardValue.formattedString() +  "): ");
+    @Override
+    public String symbol() {
+        return symbol;
+    }
 
-            try {
-                return CardValue.values()[Integer.parseInt(input)];
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter a valid index!");
-            } catch (NumberFormatException e) {
-                return CardValue.valueOf(input.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Enter a valid card color!");
-            }
-        }
+    @Override
+    public String displayName() {
+        return displayName;
     }
 }

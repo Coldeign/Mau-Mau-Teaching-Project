@@ -1,10 +1,9 @@
 package maumau.deck;
 
 import maumau.playingCard.PlayingCard;
-import maumau.sorting.ArraySort;
+import util.arrayUtil.ArraySort;
 
 public class LinkedStackDeck implements Deck {
-    public final DeckType deckType = DeckType.LINKED_STACK;
     private final LinkedStack<PlayingCard> deck = new LinkedStack<>();
 
     public LinkedStackDeck() {

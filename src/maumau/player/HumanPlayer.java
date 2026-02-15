@@ -4,7 +4,6 @@ import maumau.deck.Deck;
 import maumau.playingCard.PlayingCard;
 
 public class HumanPlayer extends AbstractPlayer {
-    public final PlayerType playerType = PlayerType.HUMAN;
     public HumanPlayer(Deck toHandCardsDrawFrom) {
         super(toHandCardsDrawFrom);
     }

@@ -30,4 +30,5 @@ bin/
 .DS_Store
 
 /src/META-INF/
+/config99.cfg
 /config.cfg

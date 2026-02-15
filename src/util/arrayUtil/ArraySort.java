@@ -1,4 +1,4 @@
-package maumau.sorting;
+package util.arrayUtil;
 
 import java.util.Random;
 

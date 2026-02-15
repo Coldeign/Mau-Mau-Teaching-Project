@@ -1,7 +1,7 @@
 package maumau.player.playerHand;
 
 import maumau.playingCard.PlayingCard;
-import maumau.sorting.ArraySort;
+import util.arrayUtil.ArraySort;
 
 public class PlayerHandArray implements PlayerHand {
     private PlayingCard[] hand = new PlayingCard[0];
@@ -11,6 +11,20 @@ public class PlayerHandArray implements PlayerHand {
     public PlayerHandArray(PlayingCard... cards) {
         for (PlayingCard card : cards) {
             add(card);
+        }
+    }
+
+    @Override
+    public int size() {
+        return hand.length;
+    }
+
+    @Override
+    public PlayingCard get(int index) {
+        try {
+            return hand[index];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return null;
         }
     }
 
@@ -90,7 +104,7 @@ public class PlayerHandArray implements PlayerHand {
 
     public int matchesCardAt(PlayingCard card) {
         for (int i = 0; i < hand.length; i++) {
-            if (card.matches(hand[i])) {
+            if (hand[i].matches(card)) {
                 return i;
             }
         }

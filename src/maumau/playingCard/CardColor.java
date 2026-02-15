@@ -1,38 +1,40 @@
 package maumau.playingCard;
 
-import Prog1Tools.IOTools;
+import util.enumUtil.hasDisplayName;
+import util.enumUtil.hasSymbol;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public enum CardColor {
-    CLUBS,
-    SPADES,
-    HEARTS,
-    DIAMONDS;
+public enum CardColor implements hasDisplayName, hasSymbol {
+    CLUBS("Clubs", "♣", Color.BLACK),
+    SPADES("Spades", "♠", Color.BLACK),
+    HEARTS("Hearts", "♥", Color.RED),
+    DIAMONDS("Diamonds", "♦", Color.RED);
 
-    public static String formattedString() {
-        StringBuilder sb = new StringBuilder();
-        for (CardColor color : CardColor.values()) {
-            sb.append(color).append(" (").append(color.ordinal()).append(")").append(", ");
-        }
-        sb.delete(sb.length()-2, sb.length());
-        return sb.toString();
+    private final String displayName;
+    private final String symbol;
+    private final Color color;
+
+    CardColor(String displayName, String symbol, Color color) {
+        this.displayName = displayName;
+        this.symbol = symbol;
+        this.color = color;
     }
 
-    public static CardColor getByUserInput() {
-        while (true) {
-            String input = IOTools.readString("Enter the card color or the index (" + CardColor.formattedString() +  "): ");
+    @Override
+    public String displayName() {
+        return displayName;
+    }
 
-            try {
-                return CardColor.values()[Integer.parseInt(input)];
-            }  catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Enter a valid index!");
-            } catch (NumberFormatException e) {
-                return CardColor.valueOf(input.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("Enter a valid card color!");
-            }
-        }
+    @Override
+    public String symbol() {
+        return symbol;
+    }
+
+    public Color color() {
+        return color;
     }
 
     public static CardColor randomCardColor(CardColor except) {

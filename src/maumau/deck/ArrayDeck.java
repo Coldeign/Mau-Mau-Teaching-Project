@@ -1,10 +1,9 @@
 package maumau.deck;
 
 import maumau.playingCard.PlayingCard;
-import maumau.sorting.ArraySort;
+import util.arrayUtil.ArraySort;
 
 public class ArrayDeck implements Deck {
-    public final DeckType deckType = DeckType.ARRAY;
     private PlayingCard[] deck;
 
     public ArrayDeck() {
